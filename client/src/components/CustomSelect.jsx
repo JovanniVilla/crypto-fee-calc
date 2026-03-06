@@ -38,12 +38,27 @@ const CustomSelect = ({ value, onChange, options, placeholder, disabled }) => {
                 }}
                 onClick={() => !disabled && setIsOpen(!isOpen)}
             >
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', overflow: 'hidden', flex: 1 }}>
                     {selectedOption ? (
                         <>
-                            <span style={{ fontWeight: '500', whiteSpace: 'nowrap' }}>{selectedOption.label}</span>
+                            <span style={{ 
+                                fontWeight: '500', 
+                                whiteSpace: 'nowrap', 
+                                overflow: 'hidden', 
+                                textOverflow: 'ellipsis',
+                                maxWidth: selectedOption.subLabel ? '60%' : '100%'
+                            }}>
+                                {selectedOption.label}
+                            </span>
                             {selectedOption.subLabel && (
-                                <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', whiteSpace: 'nowrap' }}>
+                                <span style={{ 
+                                    fontSize: '0.8rem', 
+                                    color: 'rgba(255,255,255,0.5)', 
+                                    whiteSpace: 'nowrap',
+                                    overflow: 'hidden', 
+                                    textOverflow: 'ellipsis',
+                                    flexShrink: 1
+                                }}>
                                     · {selectedOption.subLabel.toLowerCase()}
                                 </span>
                             )}

@@ -164,7 +164,7 @@ const FeeCalculator = () => {
     };
 
     return (
-        <div className="glass-panel" style={{ padding: '2rem', maxWidth: '800px', width: '100%' }}>
+        <div className="glass-panel" style={{ padding: '2rem', maxWidth: '800px', width: '100%', boxSizing: 'border-box' }}>
             {/* Tabs */}
             <div className="flex-center" style={{ marginBottom: '2rem', gap: '1rem' }}>
                 <button
@@ -240,7 +240,7 @@ const FeeCalculator = () => {
                     {loading && <Loader2 className="animate-spin" size={20} color="var(--accent-color)" />}
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
+                <div className="grid-2" style={{ gap: '1rem' }}>
 
                     <div className="glass-panel" style={{ padding: '1.25rem', background: 'rgba(0,0,0,0.3)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -267,7 +267,7 @@ const FeeCalculator = () => {
 
 const TransferForm = ({ formData, setFormData, cryptoOptions, networkOptions, selectedCrypto }) => (
     <div style={{ display: 'grid', gap: '1.5rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+        <div className="grid-2" style={{ gap: '1rem' }}>
             <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Cryptocurrency</label>
                 <CustomSelect
@@ -298,7 +298,7 @@ const TransferForm = ({ formData, setFormData, cryptoOptions, networkOptions, se
             />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+        <div className="grid-2" style={{ gap: '1rem' }}>
             <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>From Platform</label>
                 <CustomSelect
@@ -323,7 +323,7 @@ const TransferForm = ({ formData, setFormData, cryptoOptions, networkOptions, se
 
 const SwapForm = ({ formData, setFormData, cryptoOptions, selectedCrypto }) => (
     <div style={{ display: 'grid', gap: '1.5rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '1rem', alignItems: 'end' }}>
+        <div className="swap-grid">
             <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>From</label>
                 <CustomSelect
@@ -333,7 +333,7 @@ const SwapForm = ({ formData, setFormData, cryptoOptions, selectedCrypto }) => (
                     placeholder="Select"
                 />
             </div>
-            <div style={{ paddingBottom: '12px', color: 'var(--accent-color)' }}>
+            <div className="swap-icon-container" style={{ paddingBottom: '12px', color: 'var(--accent-color)' }}>
                 <ArrowRightLeft size={20} />
             </div>
             <div>
