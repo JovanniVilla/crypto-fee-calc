@@ -35,11 +35,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // MongoDB Connection
-if (process.env.MONGO_URI) {
-  mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+const mongoURI = (process.env.MONGO_URI || '').trim().replace(/^["'](.+)["']$/, '$1');
+
+if (mongoURI) {
+  mongoose.connect(mongoURI)
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 } else {
