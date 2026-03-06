@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
+  "author": "3cuartosAg",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
