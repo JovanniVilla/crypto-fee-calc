@@ -51,7 +51,8 @@ const getPlatformIcon = (platformValue, subLabel) => {
         'raydium': 'raydium-ray',
         'jupyter': 'jupiter-ag-jup',
         'orca': 'orca-orca',
-        'aerodrome': 'aerodrome-finance-aero'
+        'aerodrome': 'aerodrome-finance-aero',
+        'bitso': 'bitso-bitso'
     };
     if (map[platformValue]) {
          return <img src={`https://cryptologos.cc/logos/${map[platformValue]}-logo.svg?v=025`} alt={platformValue} style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display = 'none'; }} />;
@@ -94,7 +95,8 @@ const PLATFORMS_DATA = [
     { value: 'raydium', label: 'Raydium', subLabel: 'DEX' },
     { value: 'jupyter', label: 'Jupyter', subLabel: 'DEX' },
     { value: 'orca', label: 'Orca', subLabel: 'DEX' },
-    { value: 'aerodrome', label: 'Aerodrome', subLabel: 'DEX' }
+    { value: 'aerodrome', label: 'Aerodrome', subLabel: 'DEX' },
+    { value: 'bitso', label: 'Bitso', subLabel: 'CEX' }
 ];
 
 const PLATFORMS = PLATFORMS_DATA.map(p => ({ ...p, icon: getPlatformIcon(p.value, p.subLabel) }));
