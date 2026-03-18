@@ -38,9 +38,14 @@ const CustomSelect = ({ value, onChange, options, placeholder, disabled }) => {
                 }}
                 onClick={() => !disabled && setIsOpen(!isOpen)}
             >
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', overflow: 'hidden', flex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden', flex: 1 }}>
                     {selectedOption ? (
-                        <>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%' }}>
+                            {selectedOption.icon && (
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px' }}>
+                                    {selectedOption.icon}
+                                </div>
+                            )}
                             <span style={{ 
                                 fontWeight: '500', 
                                 whiteSpace: 'nowrap', 
@@ -62,7 +67,7 @@ const CustomSelect = ({ value, onChange, options, placeholder, disabled }) => {
                                     · {selectedOption.subLabel.toLowerCase()}
                                 </span>
                             )}
-                        </>
+                        </div>
                     ) : (
                         <span style={{ color: 'rgba(255,255,255,0.5)' }}>{placeholder}</span>
                     )}
@@ -112,7 +117,7 @@ const CustomSelect = ({ value, onChange, options, placeholder, disabled }) => {
                                     style={{
                                         padding: '12px 16px',
                                         display: 'flex',
-                                        alignItems: 'baseline',
+                                        alignItems: 'center',
                                         justifyContent: 'space-between',
                                         cursor: 'pointer',
                                         borderBottom: '1px solid rgba(255,255,255,0.05)',
@@ -126,9 +131,16 @@ const CustomSelect = ({ value, onChange, options, placeholder, disabled }) => {
                                         if (value !== opt.value) e.currentTarget.style.background = 'transparent';
                                     }}
                                 >
-                                    <span style={{ fontWeight: value === opt.value ? '600' : '400' }}>
-                                        {opt.label}
-                                    </span>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        {opt.icon && (
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px' }}>
+                                                {opt.icon}
+                                            </div>
+                                        )}
+                                        <span style={{ fontWeight: value === opt.value ? '600' : '400' }}>
+                                            {opt.label}
+                                        </span>
+                                    </div>
                                     {opt.subLabel && (
                                         <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', textAlign: 'right' }}>
                                             {opt.subLabel.toLowerCase()}

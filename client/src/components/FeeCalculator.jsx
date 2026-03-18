@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRightLeft, RefreshCw, Loader2 } from 'lucide-react';
+import { ArrowRightLeft, RefreshCw, Loader2, Wallet, Landmark, Repeat, Network, Coins } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import AmountInput from './AmountInput';
@@ -7,7 +7,69 @@ import CustomSelect from './CustomSelect';
 
 const API_URL = import.meta.env.PROD ? '/api' : 'http://localhost:5001/api';
 
-const PLATFORMS = [
+const getNetworkIcon = (networkName) => {
+    const map = {
+        'Ethereum': 'ethereum-eth',
+        'Arbitrum': 'arbitrum-arb',
+        'Optimism': 'optimism-op',
+        'Polygon': 'polygon-matic',
+        'BSC': 'bnb-bnb',
+        'Solana': 'solana-sol',
+        'TRON': 'tron-trx',
+        'Bitcoin': 'bitcoin-btc',
+        'Lightning': 'bitcoin-btc',
+        'Avalanche C-Chain': 'avalanche-avax',
+        'Dogecoin': 'dogecoin-doge',
+        'Polkadot': 'polkadot-new-dot',
+        'Litecoin': 'litecoin-ltc',
+        'Bitcoin Cash': 'bitcoin-cash-bch',
+        'XRPL': 'xrp-xrp',
+        'Cardano': 'cardano-ada'
+    };
+    if (map[networkName]) {
+        return <img src={`https://cryptologos.cc/logos/${map[networkName]}-logo.svg?v=025`} alt={networkName} style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display = 'none'; }} />;
+    }
+    return <Network size={16} />;
+};
+
+const getPlatformIcon = (platformValue, subLabel) => {
+    const map = {
+        'binance': 'binance-coin-bnb',
+        'kucoin': 'kucoin-token-kcs',
+        'okx': 'okb-okb',
+        'htx': 'huobi-token-ht',
+        'gateio': 'gatechain-token-gt',
+        'crypto_com': 'cronos-cro',
+        'mexc': 'mx-token-mx',
+        'uniswap': 'uniswap-uni',
+        'pancakeswap': 'pancakeswap-cake',
+        'sushiswap': 'sushiswap-sushi',
+        'curve': 'curve-dao-token-crv',
+        '1inch': '1inch-1inch',
+        'balancer': 'balancer-bal',
+        'traderjoe': 'joecoin-joe',
+        'raydium': 'raydium-ray',
+        'jupyter': 'jupiter-ag-jup',
+        'orca': 'orca-orca',
+        'aerodrome': 'aerodrome-finance-aero'
+    };
+    if (map[platformValue]) {
+         return <img src={`https://cryptologos.cc/logos/${map[platformValue]}-logo.svg?v=025`} alt={platformValue} style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display = 'none'; }} />;
+    }
+    if (subLabel === 'Wallet') return <Wallet size={16} />;
+    if (subLabel === 'CEX') return <Landmark size={16} />;
+    if (subLabel === 'DEX') return <Repeat size={16} />;
+    return <Coins size={16} />;
+};
+
+const getCryptoIcon = (symbol) => {
+    if (!symbol) return <Coins size={16} />;
+    const cleanSymbol = symbol.toLowerCase();
+    return <img src={`https://assets.coincap.io/assets/icons/${cleanSymbol}@2x.png`} alt={symbol} style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display = 'none'; }} />;
+};
+
+
+const PLATFORMS_DATA = [
     { value: 'personal_wallet', label: 'Personal Wallet', subLabel: 'Wallet' },
     { value: 'binance', label: 'Binance', subLabel: 'CEX' },
     { value: 'coinbase', label: 'Coinbase', subLabel: 'CEX' },
@@ -34,6 +96,8 @@ const PLATFORMS = [
     { value: 'orca', label: 'Orca', subLabel: 'DEX' },
     { value: 'aerodrome', label: 'Aerodrome', subLabel: 'DEX' }
 ];
+
+const PLATFORMS = PLATFORMS_DATA.map(p => ({ ...p, icon: getPlatformIcon(p.value, p.subLabel) }));
 
 const NETWORK_SUBLABELS = {
     'Ethereum': 'mainnet',
@@ -119,14 +183,16 @@ const FeeCalculator = () => {
     const cryptoOptions = cryptos.map(c => ({
         value: c.id,
         label: c.symbol,
-        subLabel: c.name
+        subLabel: c.name,
+        icon: getCryptoIcon(c.symbol)
     }));
 
     const selectedCrypto = cryptos.find(c => c.id === formData.crypto);
     const selectedNetworkOptions = selectedCrypto?.networks.map(n => ({
         value: n,
         label: n,
-        subLabel: NETWORK_SUBLABELS[n] || 'network'
+        subLabel: NETWORK_SUBLABELS[n] || 'network',
+        icon: getNetworkIcon(n)
     })) || [];
 
     // Native gas token mock
