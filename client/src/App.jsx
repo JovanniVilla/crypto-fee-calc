@@ -25,16 +25,16 @@ function App() {
           powered by <a href="https://www.3cuartos.mx" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>3cuartos.mx</a>
         </div>
         <div>
-          <button 
+          <button
             onClick={() => setShowDisclaimer(true)}
-            style={{ 
-              background: 'none', 
-              border: 'none', 
-              color: 'inherit', 
-              textDecoration: 'underline', 
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'inherit',
+              textDecoration: 'underline',
               cursor: 'pointer',
               fontSize: '0.8rem',
-              opacity: 0.7
+              opacity: 0.4
             }}
           >
             Descargo de Responsabilidad (Disclaimer)
@@ -44,7 +44,7 @@ function App() {
 
       <AnimatePresence>
         {showDisclaimer && (
-          <div 
+          <div
             style={{
               position: 'fixed',
               top: 0,
@@ -60,7 +60,7 @@ function App() {
             }}
             onClick={() => setShowDisclaimer(false)}
           >
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
@@ -86,9 +86,9 @@ function App() {
                   Por lo tanto, Crypto Fee Calculator no garantiza la exactitud absoluta de los resultados obtenidos y no se responsabiliza por posibles errores en los cálculos, ni por las decisiones financieras o las pérdidas económicas derivadas del uso de esta herramienta. Los valores mostrados son representativos y aproximados, y pueden no reflejar fielmente los valores reales al momento de ejecutar una transacción. El usuario es el único responsable de verificar los datos y las comisiones reales con las fuentes oficiales o las plataformas de intercambio correspondientes antes de realizar cualquier operación. El uso de esta plataforma implica la aceptación de este descargo de responsabilidad.
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => setShowDisclaimer(false)}
-                style={{ 
+                style={{
                   marginTop: '25px',
                   width: '100%',
                   padding: '12px',
