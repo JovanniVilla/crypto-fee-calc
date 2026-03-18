@@ -16,6 +16,10 @@ function App() {
       <main className="flex-center">
         <FeeCalculator />
       </main>
+
+      <footer style={{ marginTop: '4rem', textAlign: 'center', opacity: 0.8, fontSize: '0.9rem' }}>
+        powered by <a href="https://www.3cuartos.mx" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>3cuartos.mx</a>
+      </footer>
     </div>
   );
 }
